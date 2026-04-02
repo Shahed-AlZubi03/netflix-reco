@@ -15,7 +15,7 @@
 <div class="ambient-glow ambient-glow-two"></div>
 <div class="site-shell">
   <header class="topbar reveal" style="--stagger: 0;">
-    <a class="ghost-link" href="{{ url_for('index') }}">Start a new search</a>
+    <a class="ghost-link" href="{{ url_for('dashboard') }}">Start a new search</a>
     <h1>Your fresh recommendations</h1>
     <p class="results-subtext">Open any title card to view full metadata and jump straight to Netflix.</p>
   </header>
@@ -24,7 +24,7 @@
     <section class="empty-state reveal" style="--stagger: 1;">
       <h2>No exact matches right now</h2>
       <p>Try fewer language filters or select seed titles from a wider range of genres.</p>
-      <a class="primary-btn" href="{{ url_for('index') }}">Refine your profile</a>
+      <a class="primary-btn" href="{{ url_for('dashboard') }}">Refine your profile</a>
     </section>
   {% else %}
     <section class="result-grid">

@@ -6,7 +6,7 @@
 	<title>ReelMatch Studio | Netflix Curator</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/multiselect.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/base.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}">
@@ -16,11 +16,14 @@
 	<div class="ambient-glow ambient-glow-two"></div>
 	<div class="site-shell">
 		<header class="topbar reveal">
-			<a class="brand" href="{{ url_for('index') }}">
+			<a class="brand" href="{{ url_for('dashboard') }}">
 				<img src="{{ url_for('static', filename='stylesheets/logo.svg') }}" alt="Netflix logo">
 				<span>ReelMatch Studio</span>
 			</a>
-			<p class="topbar-note">Taste-led discovery engine</p>
+			<div style="display: flex; align-items: center; gap: 1.5rem;">
+				<p class="topbar-note">Taste-led discovery engine</p>
+				<a href="{{ url_for('logout') }}" class="ghost-link" style="padding: 0.4rem 1rem; font-size: 0.85rem;">Sign Out</a>
+			</div>
 		</header>
 
 		<main class="landing-grid">

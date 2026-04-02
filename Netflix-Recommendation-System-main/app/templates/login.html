@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sign In | ReelMatch Studio</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/base.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/login.css') }}">
+</head>
+<body class="auth-page">
+	<div class="ambient-glow ambient-glow-one"></div>
+	<div class="ambient-glow ambient-glow-two"></div>
+	
+	<div class="auth-shell">
+		<header class="auth-header reveal">
+			<a class="brand" href="{{ url_for('dashboard') }}">
+				<img src="{{ url_for('static', filename='stylesheets/logo.svg') }}" alt="Netflix logo">
+				<span>ReelMatch Studio</span>
+			</a>
+		</header>
+
+		<main class="auth-container reveal" style="--stagger: 1;">
+			<div class="auth-card">
+				<div class="auth-tabs">
+					<button type="button" class="tab-btn active" id="tab-signin">Sign In</button>
+					<button type="button" class="tab-btn" id="tab-signup">Sign Up</button>
+				</div>
+				
+				<div class="auth-content active" id="content-signin">
+					<h2>Welcome back</h2>
+					<form action="{{ url_for('handle_login') }}" method="POST">
+						<div class="input-group">
+							<input type="email" id="signin-email" name="email" placeholder=" " required>
+							<label for="signin-email">Email or phone number</label>
+						</div>
+						<div class="input-group">
+							<input type="password" id="signin-pwd" name="password" placeholder=" " required>
+							<label for="signin-pwd">Password</label>
+						</div>
+						<button class="primary-btn submit-btn" type="submit">Sign In</button>
+						<div class="auth-footer">
+							<label class="remember-me">
+								<input type="checkbox" checked>
+								<span class="checkmark"></span>
+								Remember me
+							</label>
+							<a href="#" class="help-link">Need help?</a>
+						</div>
+					</form>
+				</div>
+
+				<div class="auth-content" id="content-signup">
+					<h2>Create an account</h2>
+					<form action="{{ url_for('handle_login') }}" method="POST">
+						<div class="input-group">
+							<input type="text" id="signup-name" name="name" placeholder=" " required>
+							<label for="signup-name">Full name</label>
+						</div>
+						<div class="input-group">
+							<input type="email" id="signup-email" name="email" placeholder=" " required>
+							<label for="signup-email">Email address</label>
+						</div>
+						<div class="input-group">
+							<input type="password" id="signup-pwd" name="password" placeholder=" " required>
+							<label for="signup-pwd">Password</label>
+						</div>
+						<button class="primary-btn submit-btn" type="submit">Get Started</button>
+					</form>
+				</div>
+			</div>
+		</main>
+	</div>
+
+	<script>
+		document.addEventListener("DOMContentLoaded", () => {
+			document.body.classList.add("is-ready");
+			
+			const tabSignIn = document.getElementById("tab-signin");
+			const tabSignUp = document.getElementById("tab-signup");
+			const contentSignIn = document.getElementById("content-signin");
+			const contentSignUp = document.getElementById("content-signup");
+			
+			function switchTab(e) {
+			    if(e.target === tabSignIn) {
+			        tabSignIn.classList.add("active");
+			        tabSignUp.classList.remove("active");
+			        contentSignIn.classList.add("active");
+			        contentSignUp.classList.remove("active");
+			    } else {
+			        tabSignUp.classList.add("active");
+			        tabSignIn.classList.remove("active");
+			        contentSignUp.classList.add("active");
+			        contentSignIn.classList.remove("active");
+			    }
+			}
+			
+			tabSignIn.addEventListener("click", switchTab);
+			tabSignUp.addEventListener("click", switchTab);
+		});
+	</script>
+</body>
+</html>

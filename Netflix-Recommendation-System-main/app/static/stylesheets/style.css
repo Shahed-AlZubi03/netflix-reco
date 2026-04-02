@@ -1,136 +1,186 @@
 .landing-grid {
 	display: grid;
 	grid-template-columns: 1.05fr 0.95fr;
-	gap: clamp(1rem, 2vw, 2rem);
+	gap: clamp(1.5rem, 3vw, 3rem);
 	align-items: stretch;
 }
 
 .hero-panel,
 .form-panel {
-	border-radius: 28px;
-	border: 1px solid var(--line);
+	border-radius: 20px;
+	border: 1px solid var(--surface-border);
 	box-shadow: var(--shadow);
-	backdrop-filter: blur(4px);
+	backdrop-filter: blur(16px);
 }
 
 .hero-panel {
 	background:
-		linear-gradient(150deg, rgba(255, 255, 255, 0.82), rgba(255, 250, 240, 0.78)),
+		linear-gradient(150deg, rgba(11, 12, 16, 0.85), rgba(11, 12, 16, 0.6)),
 		url("../stylesheets/home-bg.jpg") center/cover;
-	padding: clamp(1.6rem, 3.5vw, 3rem);
+	padding: clamp(2rem, 3.5vw, 3.5rem);
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	min-height: 500px;
+	position: relative;
+	overflow: hidden;
+}
+
+.hero-panel::before {
+	content: '';
+	position: absolute;
+	top: 0; left: 0; right: 0; bottom: 0;
+	background: radial-gradient(circle at 30% 70%, rgba(229, 9, 20, 0.1) 0%, transparent 50%);
+	pointer-events: none;
 }
 
 .hero-panel h1 {
 	margin: 0;
-	font-family: "Bebas Neue", Impact, sans-serif;
-	font-size: clamp(2.5rem, 6.2vw, 5.2rem);
-	line-height: 0.95;
+	font-family: "Bebas Neue", sans-serif;
+	font-size: clamp(3rem, 6.5vw, 5.5rem);
+	line-height: 1;
 	letter-spacing: 0.03em;
+	background: linear-gradient(to right, #fff, #bbb);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
 
 .hero-panel p {
-	max-width: 52ch;
-	margin: 0.8rem 0 0;
-	color: var(--ink-soft);
-	font-size: clamp(1rem, 1.4vw, 1.12rem);
-	line-height: 1.55;
+	max-width: 50ch;
+	margin: 1.2rem 0 0;
+	color: #e0e0e0;
+	font-size: clamp(1.05rem, 1.4vw, 1.15rem);
+	line-height: 1.6;
+	font-weight: 400;
 }
 
 .hero-metrics {
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
-	gap: 0.75rem;
-	margin: 1.4rem 0 0;
+	gap: 1rem;
+	margin: 2rem 0 0;
 	padding: 0;
 	list-style: none;
+	position: relative;
+	z-index: 2;
 }
 
 .hero-metrics li {
-	padding: 0.9rem 0.8rem;
-	border-radius: 14px;
-	background: rgba(18, 38, 61, 0.07);
-	border: 1px solid rgba(18, 38, 61, 0.1);
+	padding: 1rem;
+	border-radius: 12px;
+	background: rgba(255, 255, 255, 0.05);
+	border: 1px solid var(--surface-border);
+	backdrop-filter: blur(8px);
+	transition: transform 0.3s ease;
+}
+
+.hero-metrics li:hover {
+	transform: translateY(-5px);
+	background: rgba(255, 255, 255, 0.08);
 }
 
 .hero-metrics strong {
 	display: block;
-	font-size: 1.3rem;
+	font-size: 1.5rem;
+	color: #fff;
+	margin-bottom: 0.2rem;
 }
 
 .hero-metrics span {
 	color: var(--ink-soft);
 	font-size: 0.85rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
 }
 
 .form-panel {
-	background:
-		linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 250, 240, 0.86)),
-		radial-gradient(circle at 100% 0%, rgba(45, 122, 116, 0.11), transparent 44%);
-	padding: clamp(1.2rem, 2.6vw, 2.1rem);
+	background: var(--surface);
+	padding: clamp(1.8rem, 3vw, 2.8rem);
+	border-top: 1px solid rgba(255, 255, 255, 0.15);
+	position: relative;
+}
+
+.form-panel::after {
+	content: '';
+	position: absolute;
+	top: 0; left: 0; right: 0; height: 100%;
+	background: linear-gradient(180deg, rgba(229, 9, 20, 0.05) 0%, transparent 30%);
+	pointer-events: none;
+	border-radius: 20px;
 }
 
 .form-panel h2 {
 	margin: 0;
-	font-family: "Bebas Neue", Impact, sans-serif;
+	font-family: "Bebas Neue", sans-serif;
 	letter-spacing: 0.05em;
-	font-size: clamp(2rem, 4.2vw, 3rem);
+	font-size: clamp(2.2rem, 4.2vw, 3.2rem);
 	font-weight: 400;
+	background: linear-gradient(135deg, #fff 0%, #a0a5b1 100%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 .form-lead {
-	margin: 0.4rem 0 1.1rem;
-	font-size: 0.95rem;
-	line-height: 1.5;
+	margin: 0.5rem 0 1.5rem;
+	font-size: 1rem;
+	line-height: 1.6;
 	color: var(--ink-soft);
 }
 
 #preference-form {
 	display: grid;
-	gap: 1rem;
+	gap: 1.25rem;
+	position: relative;
+	z-index: 2;
 }
 
 .field-block {
 	margin: 0;
-	padding: 0.92rem;
-	border-radius: 18px;
-	background: rgba(255, 255, 255, 0.86);
-	border: 1px solid rgba(18, 38, 61, 0.15);
-	box-shadow: 0 10px 24px rgba(18, 38, 61, 0.08);
+	padding: 1.2rem;
+	border-radius: 12px;
+	background: rgba(0, 0, 0, 0.3);
+	border: 1px solid var(--surface-border);
+	transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+.field-block:focus-within {
+	border-color: rgba(229, 9, 20, 0.5);
+	box-shadow: 0 0 15px rgba(229, 9, 20, 0.15);
+}
 
 .field-meta {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	gap: 0.6rem;
-	margin-bottom: 0.58rem;
+	margin-bottom: 0.8rem;
 }
 
 .field-block label {
 	display: block;
-	font-weight: 700;
+	font-weight: 600;
 	line-height: 1.15;
+	font-size: 1.05rem;
 }
 
 .field-chip {
-	padding: 0.2rem 0.52rem;
-	border-radius: 999px;
-	font-size: 0.66rem;
-	letter-spacing: 0.08em;
+	padding: 0.25rem 0.6rem;
+	border-radius: 6px;
+	font-size: 0.7rem;
+	letter-spacing: 0.1em;
 	text-transform: uppercase;
-	font-weight: 800;
-	color: var(--ink-soft);
-	background: rgba(18, 38, 61, 0.08);
+	font-weight: 700;
+	color: #fff;
+	background: rgba(255, 255, 255, 0.1);
 }
 
 .field-chip-required {
-	background: rgba(217, 74, 47, 0.14);
-	color: var(--accent-deep);
+	background: rgba(229, 9, 20, 0.2);
+	color: #ff4d4d;
+	border: 1px solid rgba(229, 9, 20, 0.3);
 }
 
 .field-footer {
@@ -138,37 +188,38 @@
 	justify-content: space-between;
 	align-items: center;
 	gap: 0.65rem;
-	margin-top: 0.55rem;
+	margin-top: 0.8rem;
 }
 
 .field-hint,
 .selection-meter {
 	margin: 0;
 	color: var(--ink-soft);
-	font-size: 0.84rem;
+	font-size: 0.85rem;
 }
 
 .selection-meter span {
-	color: var(--accent-deep);
-	font-weight: 800;
+	color: #fff;
+	font-weight: 700;
 }
 
 .validation-note {
-	margin: -0.1rem 0 0;
+	margin: 0;
 	min-height: 1.3rem;
-	color: var(--accent-deep);
-	font-weight: 800;
-	font-size: 0.84rem;
+	color: #ff4d4d;
+	font-weight: 600;
+	font-size: 0.9rem;
 }
 
 #preference-form .primary-btn {
 	width: 100%;
-	margin-top: 0.3rem;
-	padding: 0.94rem 1.2rem;
-	font-size: 1.02rem;
+	margin-top: 0.5rem;
+	padding: 1.1rem;
+	font-size: 1.1rem;
+	letter-spacing: 0.1em;
 }
 
-/* Skinning the multiselect plugin to match the new visual identity. */
+/* Skinning the multiselect plugin for dark theme */
 .ms-options-wrap {
 	width: 100%;
 }
@@ -176,43 +227,40 @@
 .ms-options-wrap > button,
 .ms-options-wrap > button:focus {
 	min-height: 54px;
-	border: 1.5px solid rgba(18, 38, 61, 0.18);
-	border-radius: 14px;
-	background:
-		linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 250, 255, 0.94));
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 8px;
+	background: rgba(0, 0, 0, 0.4);
 	color: var(--ink);
-	padding: 0.76rem 2.5rem 0.76rem 1rem;
-	font-size: 0.98rem;
-	font-weight: 600;
+	padding: 0.8rem 2.5rem 0.8rem 1.2rem;
+	font-size: 1rem;
+	font-weight: 500;
 	line-height: 1.3;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
-	transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+	transition: all 0.2s ease;
 	outline: none;
 }
 
 .ms-options-wrap > button:after {
-	border-color: rgba(18, 38, 61, 0.52) transparent transparent transparent;
-	right: 1rem;
-	top: 53%;
+	border-color: rgba(255, 255, 255, 0.6) transparent transparent transparent;
+	right: 1.2rem;
+	top: 52%;
 }
 
 .ms-options-wrap.ms-active > button,
 .ms-options-wrap > button:hover,
 .ms-options-wrap > button:focus-visible {
-	border-color: rgba(45, 122, 116, 0.62);
-	box-shadow: 0 0 0 4px rgba(45, 122, 116, 0.14), 0 10px 20px rgba(18, 38, 61, 0.11);
-	transform: translateY(-1px);
+	border-color: rgba(229, 9, 20, 0.6);
+	background: rgba(0,0,0,0.6);
 }
 
 .ms-options-wrap > .ms-options {
-	margin-top: 0.55rem;
-	border-radius: 14px;
-	border: 1.5px solid rgba(18, 38, 61, 0.2);
-	background: rgba(255, 255, 255, 0.98);
-	box-shadow: 0 14px 32px rgba(18, 38, 61, 0.2);
+	margin-top: 0.5rem;
+	border-radius: 8px;
+	border: 1px solid rgba(255, 255, 255, 0.15);
+	background: #111;
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
 	overflow: hidden;
 }
 
@@ -220,27 +268,37 @@
 	position: sticky;
 	top: 0;
 	z-index: 1;
-	padding: 0.52rem;
-	background: linear-gradient(180deg, #fff, #f7fafc);
-	border-bottom: 1px solid rgba(18, 38, 61, 0.1);
+	padding: 0.8rem;
+	background: #16181d;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .ms-options-wrap > .ms-options .ms-search input {
 	width: 100%;
-	border: 1px solid rgba(18, 38, 61, 0.15);
-	border-radius: 10px;
-	padding: 0.58rem 0.72rem;
-	font-size: 0.9rem;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 6px;
+	padding: 0.7rem 1rem;
+	font-size: 0.95rem;
+	background: rgba(0,0,0,0.3);
+	color: #fff;
 	outline: none;
+	transition: border-color 0.2s ease;
+}
+
+.ms-options-wrap > .ms-options .ms-search input:focus {
+	border-color: var(--accent);
 }
 
 .ms-options-wrap > .ms-options > ul input[type="checkbox"] {
-	margin-right: 0.58rem;
-	accent-color: var(--mint);
+	margin-right: 0.8rem;
+	accent-color: var(--accent);
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
 }
 
 .ms-options-wrap > .ms-options > ul li {
-	border-bottom: 1px solid rgba(18, 38, 61, 0.05);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .ms-options-wrap > .ms-options > ul li:last-child {
@@ -248,16 +306,19 @@
 }
 
 .ms-options-wrap > .ms-options > ul label {
-	padding: 0.58rem 0.75rem;
-	font-size: 0.9rem;
+	padding: 0.7rem 1rem;
+	font-size: 0.95rem;
 	display: flex;
 	align-items: center;
+	color: #ccc;
+	cursor: pointer;
+	transition: all 0.2s ease;
 }
 
 .ms-options-wrap > .ms-options > ul li.selected label,
 .ms-options-wrap > .ms-options > ul label:hover {
-	background: rgba(45, 122, 116, 0.12);
-	color: var(--ink);
+	background: rgba(229, 9, 20, 0.15);
+	color: #fff;
 }
 
 @media (max-width: 980px) {
@@ -281,6 +342,6 @@
 	}
 
 	.hero-panel h1 {
-		font-size: clamp(2.2rem, 11vw, 3.4rem);
+		font-size: clamp(2.5rem, 11vw, 3.8rem);
 	}
 }

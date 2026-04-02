@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Flask, redirect, render_template, request, url_for, session
 
 if __package__:
     from .recommender import NetflixRecommender
@@ -9,6 +9,7 @@ else:
 
 
 app = Flask(__name__)
+app.secret_key = os.getenv('SECRET_KEY', 'default-dev-key')
 backend = os.getenv('RECOMMENDER_BACKEND', 'tfidf').strip().lower()
 base_dir = os.path.dirname(os.path.abspath(__file__))
 csv_path = os.path.join(base_dir, 'NetflixDataset.csv')
@@ -49,18 +50,32 @@ else:
 
 
 @app.route('/')
-def index():
+def login():
+    # Always render the gate so it can be tested without cookies bypassing it
+    return render_template('login.html')
+
+@app.route('/login', methods=['POST'])
+def handle_login():
+    # Simply redirect to the dashboard without saving anything
+    return redirect(url_for('dashboard'))
+
+@app.route('/dashboard')
+def dashboard():
     return render_template(
         'index.html',
         languages=recommender.available_languages,
         titles=recommender.available_titles,
     )
 
+@app.route('/logout')
+def logout():
+    return redirect(url_for('login'))
+
 
 @app.route('/recommendations', methods=['GET', 'POST'])
 def recommendations():
     if request.method == 'GET':
-        return redirect(url_for('index'))
+        return redirect(url_for('dashboard'))
 
     movienames = request.form.getlist('titles')
     selected_languages = request.form.getlist('languages')
@@ -79,7 +94,7 @@ def recommendations():
 @app.route('/about', methods=['GET', 'POST'])
 def getvalue():
     if request.method == 'GET':
-        return redirect(url_for('index'))
+        return redirect(url_for('dashboard'))
     return recommendations()
 
 

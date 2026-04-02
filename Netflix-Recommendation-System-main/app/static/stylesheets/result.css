@@ -19,24 +19,25 @@
   --rank-accent-strong: transparent;
   border-radius: 20px;
   overflow: hidden;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--surface-border);
+  background: var(--surface);
   box-shadow: var(--shadow);
   transition: transform 0.24s ease, box-shadow 0.24s ease;
+  backdrop-filter: blur(8px);
 }
 
 .result-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 22px 36px rgba(18, 38, 61, 0.22);
+  box-shadow: 0 22px 36px rgba(0, 0, 0, 0.6);
 }
 
 .result-card.top-five {
   border-color: var(--rank-accent);
-  box-shadow: 0 14px 30px rgba(18, 38, 61, 0.18), 0 0 0 1.5px var(--rank-accent);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4), 0 0 0 1.5px var(--rank-accent);
 }
 
 .result-card.top-five:hover {
-  box-shadow: 0 22px 36px rgba(18, 38, 61, 0.22), 0 0 0 2px var(--rank-accent-strong);
+  box-shadow: 0 22px 36px rgba(0, 0, 0, 0.6), 0 0 0 2px var(--rank-accent-strong);
 }
 
 .result-card.rank-1 {
@@ -55,13 +56,13 @@
 }
 
 .result-card.rank-4 {
-  --rank-accent: rgba(45, 122, 116, 0.45);
-  --rank-accent-strong: rgba(45, 122, 116, 0.8);
+  --rank-accent: rgba(0, 210, 255, 0.45);
+  --rank-accent-strong: rgba(0, 210, 255, 0.8);
 }
 
 .result-card.rank-5 {
-  --rank-accent: rgba(217, 74, 47, 0.45);
-  --rank-accent-strong: rgba(217, 74, 47, 0.8);
+  --rank-accent: rgba(229, 9, 20, 0.45);
+  --rank-accent-strong: rgba(229, 9, 20, 0.8);
 }
 
 .poster-link {
@@ -86,16 +87,16 @@
   font-weight: 900;
   line-height: 1;
   color: #fff;
-  background: linear-gradient(135deg, rgba(18, 38, 61, 0.8), var(--rank-accent-strong));
-  box-shadow: 0 8px 14px rgba(18, 38, 61, 0.28);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), var(--rank-accent-strong));
+  box-shadow: 0 8px 14px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .poster-link::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(18, 38, 61, 0) 40%, rgba(18, 38, 61, 0.35) 100%);
+  background: linear-gradient(180deg, rgba(11, 12, 16, 0) 40%, rgba(11, 12, 16, 0.8) 100%);
 }
 
 .poster-link img {
@@ -121,6 +122,7 @@
   margin: 0;
   font-size: 0.95rem;
   line-height: 1.35;
+  color: #fff;
 }
 
 .card-body .ghost-link {
@@ -131,19 +133,21 @@
 
 .empty-state {
   margin-top: 1.2rem;
-  border: 1px solid var(--line);
+  border: 1px solid var(--surface-border);
   border-radius: 24px;
   padding: clamp(1.2rem, 3vw, 2rem);
-  background: rgba(255, 255, 255, 0.78);
+  background: var(--surface);
   box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
 }
 
 .empty-state h2 {
   margin-top: 0;
-  font-family: "Bebas Neue", Impact, sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   letter-spacing: 0.04em;
   font-size: clamp(2rem, 4.5vw, 3rem);
   font-weight: 400;
+  color: #fff;
 }
 
 .empty-state p {
