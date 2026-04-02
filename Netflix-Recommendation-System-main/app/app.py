@@ -61,10 +61,13 @@ def handle_login():
 
 @app.route('/dashboard')
 def dashboard():
+    # Provide a sample of movies/series to show in the background
+    all_movies = recommender.display_data[['Title', 'Image', 'Series or Movie']].head(200).to_dict('records')
     return render_template(
         'index.html',
         languages=recommender.available_languages,
         titles=recommender.available_titles,
+        all_movies=all_movies
     )
 
 @app.route('/logout')
