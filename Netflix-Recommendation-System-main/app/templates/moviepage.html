@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% set title = details[0] if details and details|length > 0 and details[0] else 'Title unavailable' %}
+    <title>{{ title }} | ReelMatch Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/base.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/moviepage.css') }}">
+</head>
+<body class="details">
+    {% set genres = details[1] if details and details|length > 1 and details[1] else 'Not listed' %}
+    {% set languages = details[3] if details and details|length > 3 and details[3] else 'Not listed' %}
+    {% set countries = details[4] if details and details|length > 4 and details[4] else 'Not listed' %}
+    {% set directors = details[6] if details and details|length > 6 and details[6] else 'Not listed' %}
+    {% set writers = details[7] if details and details|length > 7 and details[7] else 'Not listed' %}
+    {% set cast = details[8] if details and details|length > 8 and details[8] else 'Not listed' %}
+    {% set rating = details[9] if details and details|length > 9 and details[9] else 'N/A' %}
+    {% set imdb = details[10] if details and details|length > 10 and details[10] else 'N/A' %}
+    {% set awards = details[11] if details and details|length > 11 and details[11] else 'Not listed' %}
+    {% set nominations = details[12] if details and details|length > 12 and details[12] else 'Not listed' %}
+    {% set boxoffice = details[13] if details and details|length > 13 and details[13] else 'Not listed' %}
+    {% set production = details[16] if details and details|length > 16 and details[16] else 'Not listed' %}
+    {% set netflix_url = details[17] if details and details|length > 17 and details[17] else '' %}
+    {% set synopsis = details[18] if details and details|length > 18 and details[18] else 'No synopsis available for this title.' %}
+    {% set content_type = details[19] if details and details|length > 19 and details[19] else 'Netflix Title' %}
+    {% set poster = details[21] if details and details|length > 21 and details[21] else url_for('static', filename='stylesheets/home-bg.jpg') %}
+
+    <div class="ambient-glow ambient-glow-one"></div>
+    <div class="ambient-glow ambient-glow-two"></div>
+
+    <div class="site-shell">
+        <header class="topbar reveal" style="--stagger: 0;">
+            <a class="ghost-link" href="{{ url_for('index') }}">Start a new search</a>
+            <h1>{{ title }}</h1>
+            <p class="results-subtext">Deep profile view with cast, ratings, and availability data.</p>
+        </header>
+
+        <main class="details-layout">
+            <section class="poster-panel reveal" style="--stagger: 1;">
+                <img src="{{ poster }}" alt="Poster for {{ title }}" loading="lazy">
+                <p class="content-type">{{ content_type }}</p>
+                {% if netflix_url %}
+                    <a class="primary-btn" href="{{ netflix_url }}" target="_blank" rel="noopener noreferrer">Open on Netflix</a>
+                {% else %}
+                    <span class="primary-btn disabled">Netflix link unavailable</span>
+                {% endif %}
+            </section>
+
+            <section class="details-panel reveal" style="--stagger: 2;">
+                <article class="overview-card">
+                    <p class="eyebrow">Synopsis</p>
+                    <p>{{ synopsis }}</p>
+                </article>
+
+                <div class="detail-grid">
+                    <article class="detail-card">
+                        <h2>Essentials</h2>
+                        <ul class="kv-list">
+                            <li><span>Genre</span><strong>{{ genres }}</strong></li>
+                            <li><span>Languages</span><strong>{{ languages }}</strong></li>
+                            <li><span>Countries</span><strong>{{ countries }}</strong></li>
+                            <li><span>Viewer rating</span><strong>{{ rating }}</strong></li>
+                            <li><span>IMDb score</span><strong>{{ imdb }}</strong></li>
+                        </ul>
+                    </article>
+
+                    <article class="detail-card">
+                        <h2>Credits</h2>
+                        <ul class="kv-list">
+                            <li><span>Directors</span><strong>{{ directors }}</strong></li>
+                            <li><span>Writers</span><strong>{{ writers }}</strong></li>
+                            <li><span>Cast</span><strong>{{ cast }}</strong></li>
+                            <li><span>Production</span><strong>{{ production }}</strong></li>
+                        </ul>
+                    </article>
+
+                    <article class="detail-card">
+                        <h2>Awards</h2>
+                        <ul class="kv-list">
+                            <li><span>Awards won</span><strong>{{ awards }}</strong></li>
+                            <li><span>Nominations</span><strong>{{ nominations }}</strong></li>
+                            <li><span>Box office</span><strong>{{ boxoffice }}</strong></li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/ui.js') }}"></script>
+</body>
+</html>

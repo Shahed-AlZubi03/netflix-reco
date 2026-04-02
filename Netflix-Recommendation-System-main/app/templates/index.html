@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ReelMatch Studio | Netflix Curator</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/multiselect.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/base.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}">
+</head>
+<body class="landing">
+	<div class="ambient-glow ambient-glow-one"></div>
+	<div class="ambient-glow ambient-glow-two"></div>
+	<div class="site-shell">
+		<header class="topbar reveal">
+			<a class="brand" href="{{ url_for('index') }}">
+				<img src="{{ url_for('static', filename='stylesheets/logo.svg') }}" alt="Netflix logo">
+				<span>ReelMatch Studio</span>
+			</a>
+			<p class="topbar-note">Taste-led discovery engine</p>
+		</header>
+
+		<main class="landing-grid">
+			<section class="hero-panel reveal" style="--stagger: 0;">
+				<p class="eyebrow">Curation Desk</p>
+				<h1>Design your next Netflix watchlist with precision.</h1>
+				<p>
+					Choose titles you already love, mix in language preferences,
+					and let the recommendation engine craft a sharper lineup.
+				</p>
+				<ul class="hero-metrics">
+					<li><strong>60</strong><span>results each run</span></li>
+					<li><strong>1+</strong><span>seed title required</span></li>
+					<li><strong>Global</strong><span>language-aware picks</span></li>
+				</ul>
+			</section>
+
+			<section class="form-panel reveal" style="--stagger: 1;">
+				<h2>Build your profile</h2>
+				<p class="form-lead">Tell us what you already watch so the engine can shape a lineup with stronger signal and less noise.</p>
+				<form id="preference-form" name="passdata" action="{{ url_for('recommendations') }}" method="post" novalidate>
+					<div class="field-block">
+						<div class="field-meta">
+							<label for="titles">Titles you already enjoy</label>
+							<span class="field-chip field-chip-required">Required</span>
+						</div>
+						<select name="titles" multiple id="titles">
+							{% for title in titles %}
+							<option value="{{ title }}">{{ title }}</option>
+							{% endfor %}
+						</select>
+						<div class="field-footer">
+							<p class="field-hint">Pick at least 1 title to start recommendations.</p>
+							<p class="selection-meter"><span id="titles-count">0</span> of 1 minimum selected</p>
+						</div>
+					</div>
+
+					<div class="field-block">
+						<div class="field-meta">
+							<label for="languages">Preferred languages</label>
+							<span class="field-chip">Optional</span>
+						</div>
+						<select name="languages" multiple id="languages">
+							{% for language in languages %}
+							<option value="{{ language }}">{{ language }}</option>
+							{% endfor %}
+						</select>
+						<div class="field-footer">
+							<p class="field-hint">Optional: narrow recommendations to languages you actually watch.</p>
+							<p class="selection-meter"><span id="languages-count">0</span> selected</p>
+						</div>
+					</div>
+
+					<p id="validation-note" class="validation-note" aria-live="polite"></p>
+					<button type="submit" class="primary-btn">Curate my lineup</button>
+				</form>
+			</section>
+		</main>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="{{ url_for('static', filename='js/multiselect.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/ui.js') }}"></script>
+</body>
+</html>

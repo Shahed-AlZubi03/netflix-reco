@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Recommendations | ReelMatch Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/base.css', v='20260401') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/result.css', v='20260401') }}">
+</head>
+<body class="results">
+<div class="ambient-glow ambient-glow-one"></div>
+<div class="ambient-glow ambient-glow-two"></div>
+<div class="site-shell">
+  <header class="topbar reveal" style="--stagger: 0;">
+    <a class="ghost-link" href="{{ url_for('index') }}">Start a new search</a>
+    <h1>Your fresh recommendations</h1>
+    <p class="results-subtext">Open any title card to view full metadata and jump straight to Netflix.</p>
+  </header>
+
+  {% if images|length == 0 %}
+    <section class="empty-state reveal" style="--stagger: 1;">
+      <h2>No exact matches right now</h2>
+      <p>Try fewer language filters or select seed titles from a wider range of genres.</p>
+      <a class="primary-btn" href="{{ url_for('index') }}">Refine your profile</a>
+    </section>
+  {% else %}
+    <section class="result-grid">
+      {% for image in images %}
+        <article class="result-card reveal{% if loop.index <= 5 %} top-five rank-{{ loop.index }}{% endif %}" style="--stagger: {{ loop.index0 + 1 }};">
+          <a class="poster-link" href="{{ url_for('movie_details', name=titles[loop.index0]) }}">
+            {% if loop.index <= 5 %}
+              <span class="rank-badge" aria-label="Top {{ loop.index }} recommendation">#{{ loop.index }}</span>
+            {% endif %}
+            <img src="{{ image }}" alt="Poster for {{ titles[loop.index0] }}" loading="lazy">
+          </a>
+          <div class="card-body">
+            <h2>{{ titles[loop.index0] }}</h2>
+            <a class="ghost-link" href="{{ url_for('movie_details', name=titles[loop.index0]) }}">View profile</a>
+          </div>
+        </article>
+      {% endfor %}
+    </section>
+  {% endif %}
+</div>
+<script src="{{ url_for('static', filename='js/ui.js', v='20260401') }}"></script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+.details-layout {
+    display: grid;
+    grid-template-columns: minmax(230px, 320px) 1fr;
+    gap: clamp(1rem, 2.5vw, 2rem);
+    align-items: start;
+}
+
+.poster-panel {
+    position: sticky;
+    top: 1.2rem;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow: var(--shadow);
+}
+
+.poster-panel img {
+    width: 100%;
+    aspect-ratio: 3 / 4.5;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 1px solid rgba(18, 38, 61, 0.18);
+}
+
+.content-type {
+    margin: 0.82rem 0 0.7rem;
+    color: var(--mint);
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    font-size: 0.76rem;
+}
+
+.poster-panel .primary-btn {
+    width: 100%;
+}
+
+.details-panel {
+    display: grid;
+    gap: 1rem;
+}
+
+.overview-card,
+.detail-card {
+    border-radius: 20px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow: var(--shadow);
+}
+
+.overview-card {
+    padding: clamp(1rem, 2.4vw, 1.6rem);
+}
+
+.overview-card p {
+    margin: 0;
+    line-height: 1.62;
+    color: var(--ink-soft);
+}
+
+.overview-card .eyebrow {
+    margin-bottom: 0.55rem;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.9rem;
+}
+
+.detail-card {
+    padding: 1rem;
+}
+
+.detail-card h2 {
+    margin: 0 0 0.7rem;
+    font-family: "Bebas Neue", Impact, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    font-size: 1.75rem;
+}
+
+.kv-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.7rem;
+}
+
+.kv-list li {
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid rgba(18, 38, 61, 0.1);
+}
+
+.kv-list li:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.kv-list span {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: var(--ink-soft);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.kv-list strong {
+    font-size: 0.95rem;
+    line-height: 1.48;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 1100px) {
+    .detail-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+    .details-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .poster-panel {
+        position: relative;
+        top: 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-card h2 {
+        font-size: 1.55rem;
+    }
+}
